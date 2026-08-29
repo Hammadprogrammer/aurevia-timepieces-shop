@@ -254,18 +254,16 @@ export function StoreProvider({ children }: { children: ReactNode }) {
     setCart((prev) => prev.filter((i) => i.productId !== productId));
   }, []);
 
-  const toggleWishlist = useCallback((productId: string) => {
-    let added = false;
-    setWishlist((prev) => {
-      if (prev.includes(productId)) return prev.filter((id) => id !== productId);
-      added = true;
-      return [...prev, productId];
-    });
-    return !wishlistHas(wishlist, productId);
-    function wishlistHas(list: string[], id: string) {
-      return list.includes(id);
-    }
-  }, [wishlist]);
+  const toggleWishlist = useCallback(
+    (productId: string) => {
+      const added = !wishlist.includes(productId);
+      setWishlist((prev) =>
+        prev.includes(productId) ? prev.filter((id) => id !== productId) : [...prev, productId],
+      );
+      return added;
+    },
+    [wishlist],
+  );
 
   const applyCoupon = useCallback<StoreValue["applyCoupon"]>((code) => {
     const key = code.trim().toUpperCase();
