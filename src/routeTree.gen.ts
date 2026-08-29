@@ -10,12 +10,27 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as IndexRouteImport } from './routes/index'
+import { Route as AboutRouteImport } from './routes/about'
+import { Route as LuxuryRouteImport } from './routes/luxury'
 import { Route as MenRouteImport } from './routes/men'
 import { Route as ShopRouteImport } from './routes/shop'
+import { Route as SmartRouteImport } from './routes/smart'
+import { Route as SportsRouteImport } from './routes/sports'
+import { Route as WomenRouteImport } from './routes/women'
 
 const IndexRoute = IndexRouteImport.update({
   id: '/',
   path: '/',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const AboutRoute = AboutRouteImport.update({
+  id: '/about',
+  path: '/about',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const LuxuryRoute = LuxuryRouteImport.update({
+  id: '/luxury',
+  path: '/luxury',
   getParentRoute: () => rootRouteImport,
 } as any)
 const MenRoute = MenRouteImport.update({
@@ -28,35 +43,95 @@ const ShopRoute = ShopRouteImport.update({
   path: '/shop',
   getParentRoute: () => rootRouteImport,
 } as any)
+const SmartRoute = SmartRouteImport.update({
+  id: '/smart',
+  path: '/smart',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const SportsRoute = SportsRouteImport.update({
+  id: '/sports',
+  path: '/sports',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const WomenRoute = WomenRouteImport.update({
+  id: '/women',
+  path: '/women',
+  getParentRoute: () => rootRouteImport,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/luxury': typeof LuxuryRoute
   '/men': typeof MenRoute
   '/shop': typeof ShopRoute
+  '/smart': typeof SmartRoute
+  '/sports': typeof SportsRoute
+  '/women': typeof WomenRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/luxury': typeof LuxuryRoute
   '/men': typeof MenRoute
   '/shop': typeof ShopRoute
+  '/smart': typeof SmartRoute
+  '/sports': typeof SportsRoute
+  '/women': typeof WomenRoute
 }
 export interface FileRoutesById {
   __root__: typeof rootRouteImport
   '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/luxury': typeof LuxuryRoute
   '/men': typeof MenRoute
   '/shop': typeof ShopRoute
+  '/smart': typeof SmartRoute
+  '/sports': typeof SportsRoute
+  '/women': typeof WomenRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/men' | '/shop'
+  fullPaths:
+    | '/'
+    | '/about'
+    | '/luxury'
+    | '/men'
+    | '/shop'
+    | '/smart'
+    | '/sports'
+    | '/women'
   fileRoutesByTo: FileRoutesByTo
-  to: '/' | '/men' | '/shop'
-  id: '__root__' | '/' | '/men' | '/shop'
+  to:
+    | '/'
+    | '/about'
+    | '/luxury'
+    | '/men'
+    | '/shop'
+    | '/smart'
+    | '/sports'
+    | '/women'
+  id:
+    | '__root__'
+    | '/'
+    | '/about'
+    | '/luxury'
+    | '/men'
+    | '/shop'
+    | '/smart'
+    | '/sports'
+    | '/women'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  LuxuryRoute: typeof LuxuryRoute
   MenRoute: typeof MenRoute
   ShopRoute: typeof ShopRoute
+  SmartRoute: typeof SmartRoute
+  SportsRoute: typeof SportsRoute
+  WomenRoute: typeof WomenRoute
 }
 
 declare module '@tanstack/react-router' {
@@ -66,6 +141,20 @@ declare module '@tanstack/react-router' {
       path: '/'
       fullPath: '/'
       preLoaderRoute: typeof IndexRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/about': {
+      id: '/about'
+      path: '/about'
+      fullPath: '/about'
+      preLoaderRoute: typeof AboutRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/luxury': {
+      id: '/luxury'
+      path: '/luxury'
+      fullPath: '/luxury'
+      preLoaderRoute: typeof LuxuryRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/men': {
@@ -82,13 +171,39 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof ShopRouteImport
       parentRoute: typeof rootRouteImport
     }
+    '/smart': {
+      id: '/smart'
+      path: '/smart'
+      fullPath: '/smart'
+      preLoaderRoute: typeof SmartRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/sports': {
+      id: '/sports'
+      path: '/sports'
+      fullPath: '/sports'
+      preLoaderRoute: typeof SportsRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/women': {
+      id: '/women'
+      path: '/women'
+      fullPath: '/women'
+      preLoaderRoute: typeof WomenRouteImport
+      parentRoute: typeof rootRouteImport
+    }
   }
 }
 
 const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  LuxuryRoute: LuxuryRoute,
   MenRoute: MenRoute,
   ShopRoute: ShopRoute,
+  SmartRoute: SmartRoute,
+  SportsRoute: SportsRoute,
+  WomenRoute: WomenRoute,
 }
 export const routeTree = rootRouteImport
   ._addFileChildren(rootRouteChildren)
