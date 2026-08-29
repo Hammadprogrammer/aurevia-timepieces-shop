@@ -20,7 +20,7 @@ export function OrderTimeline({ order }: { order: Order }) {
     <ol className="mt-6 space-y-0">
       {ORDER_STAGES.map((stage, i) => {
         const done = i <= active;
-        const eta = new Date(new Date(order.placedAt).getTime() + STAGE_HOURS[i] * 3_600_000);
+        const eta = new Date(new Date(order.placedAt).getTime() + STAGE_HOURS[i]! * 3_600_000);
         return (
           <li key={stage} className="flex gap-4">
             <div className="flex flex-col items-center">

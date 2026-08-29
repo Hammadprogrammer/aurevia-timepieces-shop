@@ -1,11 +1,11 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { CatalogView } from "@/components/CatalogView";
 
-type ShopSearch = { q?: string };
+type ShopSearch = { q?: string | undefined };
 
 export const Route = createFileRoute("/shop")({
   validateSearch: (search: Record<string, unknown>): ShopSearch => ({
-    q: typeof search.q === "string" && search.q ? search.q : undefined,
+    q: typeof search["q"] === "string" && search["q"] ? (search["q"] as string) : undefined,
   }),
   head: () => ({
     meta: [

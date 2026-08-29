@@ -22,7 +22,7 @@ export type Product = {
   waterResistance: string;
   warranty: string;
   description: string;
-  featured?: boolean;
+  featured: boolean;
 };
 
 const IMG = (id: string) =>
@@ -150,7 +150,7 @@ export const products: Product[] = rows.map((r, i) => ({
   rating: r.r,
   reviews: r.rv,
   stock: r.s,
-  image: IMG(PHOTOS[i % PHOTOS.length]),
+  image: IMG(PHOTOS[i % PHOTOS.length]!),
   colors: r.cl,
   straps: r.st,
   movement: r.mv,
@@ -159,7 +159,7 @@ export const products: Product[] = rows.map((r, i) => ({
   waterResistance: r.wr,
   warranty: r.c === "luxury" ? "5 Years International Warranty" : "2 Years International Warranty",
   description: r.d,
-  featured: r.f,
+  featured: r.f ?? false,
 }));
 
 export const categoryMeta: Record<

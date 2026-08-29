@@ -38,8 +38,8 @@ function ProductDetail() {
   const { product } = Route.useLoaderData();
   const { addToCart, toggleWishlist, isWishlisted } = useStore();
   const navigate = useNavigate();
-  const [color, setColor] = useState(product.colors[0]);
-  const [strap, setStrap] = useState(product.straps[0]);
+  const [color, setColor] = useState(product.colors[0] ?? "");
+  const [strap, setStrap] = useState(product.straps[0] ?? "");
   const [qty, setQty] = useState(1);
   const wished = isWishlisted(product.id);
 

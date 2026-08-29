@@ -235,8 +235,8 @@ export function StoreProvider({ children }: { children: ReactNode }) {
         {
           productId,
           qty: Math.min(opts?.qty ?? 1, product.stock),
-          color: opts?.color ?? product.colors[0],
-          strap: opts?.strap ?? product.straps[0],
+          color: opts?.color ?? product.colors[0] ?? "",
+          strap: opts?.strap ?? product.straps[0] ?? "",
         },
       ];
     });
