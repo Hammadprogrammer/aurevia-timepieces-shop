@@ -70,28 +70,7 @@ function ProductDetail() {
         <span className="text-foreground">{product.name}</span>
       </nav>
 
-      <div className="mt-8 grid gap-12 lg:grid-cols-2">
-        <div className="fade-up">
-          <img
-            src={product.image}
-            alt={`${product.brand} ${product.name}`}
-            className="aspect-4/5 w-full bg-secondary object-cover"
-          />
-          <div className="mt-4 grid grid-cols-3 gap-4">
-            {[product.image, related[0]?.image, related[1]?.image]
-              .filter(Boolean)
-              .map((src, i) => (
-                <img
-                  key={i}
-                  src={src as string}
-                  alt={`${product.name} detail ${i + 1}`}
-                  loading="lazy"
-                  className="aspect-square w-full bg-secondary object-cover"
-                />
-              ))}
-          </div>
-        </div>
-
+      <div className="mt-8">
         <div className="fade-up">
           <p className="text-[11px] tracking-[0.24em] text-muted-foreground uppercase">
             {product.brand} · {product.collection} Collection
