@@ -123,6 +123,20 @@ function RootShell({ children }: { children: ReactNode }) {
 function RootComponent() {
   const { queryClient } = Route.useRouteContext();
 
+  useEffect(() => {
+    const existingScript = document.querySelector('script[data-zanderio-widget="true"]');
+    if (existingScript) {
+      return;
+    }
+
+    const script = document.createElement("script");
+    script.src = "https://cdn.zanderio.ai/widget/loader.js";
+    script.setAttribute("data-id", "wdg_YXTPEf8GNQO5fcGkgQyvUSv8");
+    script.setAttribute("data-zanderio-widget", "true");
+    script.defer = true;
+    document.body.appendChild(script);
+  }, []);
+
   return (
     <QueryClientProvider client={queryClient}>
       <StoreProvider>
